@@ -7,13 +7,13 @@
         android:id="@+id/dialog_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="\n Please Enter Your Info Below"
+        android:text="\n Please Enter Your Info Below or Login with an existing account"
         android:textAlignment="center"
         android:textColor="#0000FF"
-        android:textSize="28sp"
+        android:textSize="20sp"
         android:textStyle="bold"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/dialog_fullname"
@@ -22,9 +22,9 @@
         android:text="Enter your full name"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="12sp"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="75dp"
         android:layout_below="@+id/dialog_title"
         android:layout_alignStart="@+id/dialog_title" />
     <TextView
@@ -34,7 +34,7 @@
         android:text="Enter your email"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="12sp"
         android:textStyle="bold"
         android:layout_below="@+id/dialog_fullname"
         android:layout_alignStart="@+id/dialog_fullname"
@@ -47,7 +47,7 @@
         android:text="Choose a username"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="12sp"
         android:textStyle="bold"
         android:layout_marginTop="75dp"
         android:layout_below="@+id/dialog_email"
@@ -60,7 +60,7 @@
         android:text="Choose a password"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:textSize="18sp"
+        android:textSize="12sp"
         android:textStyle="bold"
         android:layout_centerVertical="true"
         android:layout_marginTop="75dp"
@@ -108,18 +108,29 @@
         android:layout_alignStart="@+id/dialog_username"
         android:layout_marginTop="10dp"/>
 
+
     <Button
         android:id="@+id/create_newuser"
         android:onClick="onClick"
         android:layout_width="100dp"
         android:layout_height="60dp"
-        android:text="Accept"
+        android:text="Create new user"
         android:textSize="15sp"
         android:background="@drawable/circle_button"
         android:textColor="#F8F8FF"
-        android:layout_alignTop="@+id/edit_password"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="11dp" />
-
+        android:layout_alignBottom="@+id/edit_password"
+        android:layout_toEndOf="@+id/edit_password" />
+    <Button
+        android:id="@+id/existing_user"
+        android:onClick="onClick"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:text="Log in with exisiting user"
+        android:textSize="15sp"
+        android:background="@drawable/button_existing_user"
+        android:textColor="#F8F8FF"
+        android:layout_below="@+id/dialog_title"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
