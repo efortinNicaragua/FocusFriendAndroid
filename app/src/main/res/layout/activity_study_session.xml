@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_doctor_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/studySession_Title"
+        android:layout_width="276dp"
+        android:layout_height="65dp"
+        android:text="Study Session"
+        android:textAlignment="center"
+        android:textColor="#0000FF"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:onClick="goto_StudySession"
+        tools:layout_editor_absoluteX="54dp"
+        tools:layout_editor_absoluteY="28dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp" />
+    <TextView
+        android:id="@+id/studySession_details"
+        android:layout_width="358dp"
+        android:layout_height="193dp"
+        android:text="Study Sessions will last 45 minutes if you complete it without touching your phone you will be rewarded
+         with 30 points! If you complete 45 minutes you can continue for another 45 if you'd like"
+        android:textAlignment="center"
+        android:textColor="#696969"
+        android:textSize="20sp"
+        android:onClick="start_timer"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="106dp"
+        android:layout_marginTop="43dp"
+        android:layout_below="@+id/studySession_Title"
+        android:layout_alignEnd="@+id/study_timeremaining" />
+
+    <Button
+        android:id="@+id/start_timer"
+        android:onClick="start_timer"
+        android:layout_width="299dp"
+        android:layout_height="66dp"
+        android:text="Start"
+        android:textSize="40sp"
+        android:background="@drawable/circle_button"
+        android:textColor="#F8F8FF"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="391dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/study_timeremaining"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/study_timeremaining"
+        android:layout_width="366dp"
+        android:layout_height="60dp"
+        android:text="Time Left"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="40sp"
+        tools:layout_editor_absoluteX="9dp"
+        tools:layout_editor_absoluteY="299dp"
+        android:layout_below="@+id/studySession_details"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
