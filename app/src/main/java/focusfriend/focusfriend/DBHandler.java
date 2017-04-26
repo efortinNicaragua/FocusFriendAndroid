@@ -92,17 +92,22 @@ public class DBHandler extends SQLiteOpenHelper {
         return Student;
     }*/
 
-    public List<String> getAllStudent() {
-        List<String> studentList = new ArrayList<String>();
+    public ArrayList<Class_Student> getAllStudent() {
+        ArrayList<Class_Student> studentList = new ArrayList<Class_Student>();
 
-        String selectQuery = "SELECT userid, tp, sp FROM " + TABLE_USERS; //+ " WHERE "+ KEY_USERID +" =efortin";
+        String selectQuery = "SELECT * FROM " + TABLE_USERS + " WHERE userid like 'efortin'";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
             do {
-                String Student = (cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2));
+                int totalPoints, spendablePoints;
+                totalPoints=Integer.parseInt(cursor.getString(9));
+                spendablePoints=Integer.parseInt(cursor.getString(10));
+                        Class_Student Student= new Class_Student(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                        cursor.getString(5), cursor.getString(6), cursor.getString(7),cursor.getString(8),
+                        spendablePoints, totalPoints);
                 studentList.add(Student);
             }
             while (cursor.moveToNext());
@@ -135,5 +140,23 @@ public class DBHandler extends SQLiteOpenHelper {
         db.delete(TABLE_USERS,KEY_USERID+ " = ?",
                 new String[]{UserID.toString()});
         db.close();
+    }
+
+    public ArrayList<String> login(String UserID){
+        ArrayList<String> passwords = new ArrayList<String>();
+        String selectQuery = "SELECT password FROM " + TABLE_USERS + " WHERE userid like '" +UserID+"'";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String password= cursor.getString(0);
+                passwords.add(password);
+            }
+            while (cursor.moveToNext());
+        }
+        return passwords;
+
     }
 }
