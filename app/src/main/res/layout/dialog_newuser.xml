@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="\n Please Enter Your Info Below"
+        android:textAlignment="center"
+        android:textColor="#0000FF"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/dialog_fullname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your full name"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/dialog_title"
+        android:layout_alignStart="@+id/dialog_title" />
+    <TextView
+        android:id="@+id/dialog_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter your email"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/dialog_fullname"
+        android:layout_alignStart="@+id/dialog_fullname"
+        android:layout_marginTop="75dp" />
+
+    <TextView
+        android:id="@+id/dialog_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose a username"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginTop="75dp"
+        android:layout_below="@+id/dialog_email"
+        android:layout_alignEnd="@+id/dialog_fullname" />
+
+    <TextView
+        android:id="@+id/dialog_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose a password"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="75dp"
+        android:layout_alignStart="@+id/dialog_email"
+        android:layout_below="@id/dialog_username"/>
+
+    <EditText
+        android:id="@+id/edit_fullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Full Name"
+        android:layout_below="@+id/dialog_fullname"
+        android:layout_alignStart="@+id/dialog_username"
+        android:layout_marginTop="10dp"/>
+    <EditText
+        android:id="@+id/edit_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:layout_below="@+id/dialog_email"
+        android:layout_alignStart="@+id/dialog_username"
+        android:layout_marginTop="10dp"/>
+    <EditText
+        android:id="@+id/edit_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textNoSuggestions"
+        android:hint="Username"
+        android:layout_below="@+id/dialog_username"
+        android:layout_alignStart="@+id/dialog_username"
+        android:layout_marginTop="10dp"/>
+    <EditText
+        android:id="@+id/edit_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:layout_below="@+id/dialog_password"
+        android:layout_alignStart="@+id/dialog_username"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/create_newuser"
+        android:onClick="onClick"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:text="Accept"
+        android:textSize="15sp"
+        android:background="@drawable/circle_button"
+        android:textColor="#F8F8FF"
+        android:layout_alignTop="@+id/edit_password"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="11dp" />
+
+
+</RelativeLayout>

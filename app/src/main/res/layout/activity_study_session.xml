@@ -25,8 +25,7 @@
         android:id="@+id/studySession_details"
         android:layout_width="358dp"
         android:layout_height="193dp"
-        android:text="Study Sessions will last 45 minutes if you complete it without touching your phone you will be rewarded
-         with 30 points! If you complete 45 minutes you can continue for another 45 if you'd like"
+        android:text="Study Sessions will last 45 minutes if you complete it without touching your phone you will be rewarded with 30 points! If you complete 45 minutes you can continue for another 45 if you'd like"
         android:textAlignment="center"
         android:textColor="#696969"
         android:textSize="20sp"
