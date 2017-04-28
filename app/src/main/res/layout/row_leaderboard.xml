@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/leaderboard_fullname"
+        android:layout_width="115dp"
+        android:layout_height="50dp"
+        android:text="Ethan Fortin"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:textColor="#000000"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:id="@+id/leaderboard_totalpoints"
+        android:layout_width="75dp"
+        android:layout_height="50dp"
+        android:text="1000"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:layout_toEndOf="@+id/leaderboard_fullname"/>
+    <TextView
+        android:id="@+id/leaderboard_university"
+        android:layout_width="95dp"
+        android:layout_height="50dp"
+        android:text="Villanova"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:layout_toEndOf="@+id/leaderboard_totalpoints"/>
+    <TextView
+        android:id="@+id/leaderboard_major"
+        android:layout_width="95dp"
+        android:layout_height="50dp"
+        android:text="Finance"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="#000000"
+        android:layout_toEndOf="@+id/leaderboard_university"/>
+</RelativeLayout>

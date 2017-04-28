@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StudySession"></activity>
+        <activity android:name=".StudySession" />
+        <activity android:name=".Leaderboard"></activity>
     </application>
 
 </manifest>

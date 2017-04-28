@@ -79,23 +79,9 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
 
-   /* public String getStudent(String Name, String Major, int Year) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        Cursor cursor = db.query(TABLE_USERS, new String[]{KEY_NAME, KEY_MAJOR,
-                KEY_GRADUATION_YEAR}, KEY_NAME + "=?", new String[]{Name.toString()}, null, null, null, null);
-        if (cursor != null) ;
-        cursor.moveToFirst();
-
-        String Student = (cursor.getString(0) + " " + cursor.getString(1) + " " + cursor.getString(2));
-
-        return Student;
-    }*/
-
-    public ArrayList<Class_Student> getAllStudent() {
+    public ArrayList<Class_Student> getStudent(String UserID) {
         ArrayList<Class_Student> studentList = new ArrayList<Class_Student>();
-
-        String selectQuery = "SELECT * FROM " + TABLE_USERS + " WHERE userid like 'efortin'";
+        String selectQuery = "SELECT *  FROM " + TABLE_USERS + " WHERE userid like '" +UserID+"'";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -103,9 +89,56 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 int totalPoints, spendablePoints;
-                totalPoints=Integer.parseInt(cursor.getString(9));
-                spendablePoints=Integer.parseInt(cursor.getString(10));
+                totalPoints=Integer.parseInt(cursor.getString(10));
+                spendablePoints=Integer.parseInt(cursor.getString(9));
+                Class_Student Student= new Class_Student(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                        cursor.getString(5), cursor.getString(6), cursor.getString(7),cursor.getString(8),
+                        spendablePoints, totalPoints);
+                studentList.add(Student);
+            }
+            while (cursor.moveToNext());
+        }
+        return studentList;
+
+    }
+
+
+    public ArrayList<Class_Student> getAllStudent() {
+        ArrayList<Class_Student> studentList = new ArrayList<Class_Student>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_USERS;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int totalPoints, spendablePoints;
+                totalPoints=Integer.parseInt(cursor.getString(10));
+                spendablePoints=Integer.parseInt(cursor.getString(9));
                         Class_Student Student= new Class_Student(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                        cursor.getString(5), cursor.getString(6), cursor.getString(7),cursor.getString(8),
+                        spendablePoints, totalPoints);
+                studentList.add(Student);
+            }
+            while (cursor.moveToNext());
+        }
+        return studentList;
+    }
+    public ArrayList<Class_Student> getAllStudentfromGroup(String sort, String value) {
+        ArrayList<Class_Student> studentList = new ArrayList<Class_Student>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_USERS + " WHERE "+ sort+ " like '"+value+"' ORDER BY tp DESC;";
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                int totalPoints, spendablePoints;
+                totalPoints=Integer.parseInt(cursor.getString(10));
+                spendablePoints=Integer.parseInt(cursor.getString(9));
+                Class_Student Student= new Class_Student(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
                         cursor.getString(5), cursor.getString(6), cursor.getString(7),cursor.getString(8),
                         spendablePoints, totalPoints);
                 studentList.add(Student);
@@ -134,6 +167,14 @@ public class DBHandler extends SQLiteOpenHelper {
         return db.update(TABLE_USERS, values, KEY_USERID + " =?",
                 new String[]{UserID.toString()});
 
+    }
+    public void updateGroups(String userID, String university, String major, String group1, String group2, String group3){
+        String selectQuery = "Update " +TABLE_USERS+
+                            " Set "+ KEY_UNIVERSITY + " = '" + university+ "', "+ KEY_MAJOR+ " = '"+major+ "', "+ KEY_GROUP1+ "= '"+group1+"', "
+                            +KEY_GROUP2+ " = '"+group2+"', "+ KEY_GROUP3+ " = '"+ group3+"' "+
+                            "Where "+KEY_USERID+ " = '"+userID+"'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(selectQuery);
     }
     public void deleteContact(String UserID){
         SQLiteDatabase db= this.getWritableDatabase();

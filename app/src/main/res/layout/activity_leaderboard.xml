@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp">
+    <TextView
+        android:id="@+id/leadrboard_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Existing User Login"
+        android:textAlignment="center"
+        android:textColor="#0000FF"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true" />
+
+    <Button
+        android:id="@+id/update_groups"
+        android:onClick="change_groups"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:text="Update Groups"
+        android:textSize="15sp"
+        android:background="@drawable/button_existing_user"
+        android:textColor="#F8F8FF"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+    <Button
+        android:id="@+id/show_university"
+        android:onClick="show_university"
+        android:layout_width="65dp"
+        android:layout_height="40dp"
+        android:text="College"
+        android:textSize="13sp"
+        android:background="@drawable/circle_button"
+        android:textColor="#F8F8FF"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/update_groups"
+        android:layout_alignParentStart="true" />
+    <Button
+        android:id="@+id/show_major"
+        android:onClick="show_major"
+        android:layout_width="65dp"
+        android:layout_height="40dp"
+        android:text="Major"
+        android:textSize="15sp"
+        android:background="@drawable/circle_button"
+        android:textColor="#F8F8FF"
+        android:layout_above="@+id/leaderboard"
+        android:layout_toEndOf="@+id/show_university" />
+    <Button
+        android:id="@+id/show_group1"
+        android:onClick="show_group1"
+        android:layout_width="65dp"
+        android:layout_height="40dp"
+        android:text="Group1"
+        android:textSize="15sp"
+        android:background="@drawable/circle_button"
+        android:textColor="#F8F8FF"
+        android:layout_above="@+id/leaderboard"
+        android:layout_toEndOf="@+id/show_major" />
+    <Button
+        android:id="@+id/show_group2"
+        android:onClick="show_group2"
+        android:layout_width="65dp"
+        android:layout_height="40dp"
+        android:text="Group2"
+        android:textSize="15sp"
+        android:background="@drawable/circle_button"
+        android:textColor="#F8F8FF"
+        android:layout_above="@+id/leaderboard"
+        android:layout_toEndOf="@+id/show_group1"
+        android:layout_marginTop="10dp"/>
+    <Button
+        android:id="@+id/show_group3"
+        android:onClick="show_group3"
+        android:layout_width="65dp"
+        android:layout_height="40dp"
+        android:text="Group3"
+        android:textSize="15sp"
+        android:background="@drawable/circle_button"
+        android:textColor="#F8F8FF"
+        android:layout_above="@+id/leaderboard"
+        android:layout_toEndOf="@+id/show_group2"
+        android:layout_marginTop="10dp"/>
+    <ListView
+        android:id="@+id/leaderboard"
+        android:layout_width="fill_parent"
+        android:layout_height="400dp"
+        android:layout_marginTop="48dp"
+        android:layout_below="@+id/show_university"
+        android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
