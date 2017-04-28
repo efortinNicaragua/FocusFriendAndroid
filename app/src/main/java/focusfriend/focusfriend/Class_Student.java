@@ -4,6 +4,7 @@ package focusfriend.focusfriend;
  * Created by Wildcat on 4/26/2017.
  */
 
+//student class holds all data from student db
 public class Class_Student {
         public String UserID;
         public String Email;
@@ -34,6 +35,7 @@ public class Class_Student {
             this.TotalPoints=TotalPoints;
 
         }
+        //these methdos allow us to return one piece of data if we need it
         public String getUserID(){return UserID;}
         public String getEmail(){return Email;}
         public String getFullName(){return FullName;}

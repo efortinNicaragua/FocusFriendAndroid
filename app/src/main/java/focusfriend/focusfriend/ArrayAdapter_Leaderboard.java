@@ -19,6 +19,7 @@ public class ArrayAdapter_Leaderboard extends ArrayAdapter<Class_Student> {
     }
 
     @Override
+    //typical array adapter but puts the values full name totalPoints university major into the row xml created.
     public View getView(int position,View convertView, ViewGroup parent) {
 
         Class_Student single_student = getItem(position);

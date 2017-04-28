@@ -16,6 +16,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class Leaderboard extends AppCompatActivity {
+
+    //typical intializes
     final String PREFS_NAME = "MyPrefsFile";
     SharedPreferences settings;
     Context context = this;
@@ -28,9 +30,12 @@ public class Leaderboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leaderboard);
+
+        //get shared preference username so we know who user is
         settings = getSharedPreferences(PREFS_NAME, 0);
         username = settings.getString("my_username", "default");
 
+        //dialog allows user to update their groups university and major for comparisons on the leaderboard only launched on click
         dialog_update_groups = new Dialog(context);
         dialog_update_groups.setContentView(R.layout.dialog_updategroups);
         updateGroups = (Button) findViewById(R.id.update_groups);
@@ -41,6 +46,7 @@ public class Leaderboard extends AppCompatActivity {
         et_group3 = (EditText) dialog_update_groups.findViewById(R.id.edit_group3);
         dialog_updateButton=(Button)dialog_update_groups.findViewById(R.id.dialog_update_groups);
 
+        //launches dialog for update groups
         updateGroups.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +55,8 @@ public class Leaderboard extends AppCompatActivity {
 
             }
         });
+
+        //when clicked sends updated info to db
         dialog_updateButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -74,6 +82,10 @@ public class Leaderboard extends AppCompatActivity {
             }
         });
     }
+
+    //these on click methods all work the same they just show the different ways to sort the list.
+    //these buttons are all at the top of the screen, when click they send getallstudents from db with params for column name and value that matches the users
+    //SQL query is put into array list and returned where we put it into an array adapter to get it into the list view
     public void show_university(View view){
         DBHandler db=new DBHandler(context);
         ArrayList<Class_Student> student=db.getStudent(username);
