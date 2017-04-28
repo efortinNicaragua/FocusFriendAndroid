@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +24,7 @@ public class StudySession extends AppCompatActivity {
     private Handler time_handler;
     private long time_remaining;
     private long time_seconds;
-    int first =0;
+    int add_points =100;
     Context context=this;
     DBHandler db=new DBHandler(this);
 
@@ -33,12 +34,6 @@ public class StudySession extends AppCompatActivity {
         setContentView(R.layout.activity_study_session);
         timer_start = (Button) findViewById(R.id.start_timer);
         timer = (TextView) findViewById(R.id.study_timeremaining);
-if (first ==1 ){
-
-}
-        ArrayList<Class_Student> ethan= db.getAllStudent();
-        String sethan=ethan.get(0).getUserID().toString();
-        Log.d("Ethan1", sethan+ " "+ethan.get(0).SpendablePoints );
 
     }
     public void start_timer(View view){
@@ -70,9 +65,19 @@ if (first ==1 ){
     }
 
     public void StudySessionComplete(){
-        db.updateStudent("efortin", "efortin@villanova.edu", "Ethan Fortin", "password", "Villanova", "CPE", "FocusFriend", "Engineer", "FrisbeeTeam", 200, 400);
+            SharedPreferences settings = getSharedPreferences("MyPrefsFile", 0);
+            DBHandler db=new DBHandler(context);
+
+            ArrayList<Class_Student> temp=db.getStudent(settings.getString("my_username","default"));
+            int SpendablePoints=temp.get(0).SpendablePoints+add_points;
+            int TotalPoints=temp.get(0).TotalPoints+add_points;
+
+        db.updateStudent(temp.get(0).UserID,temp.get(0).Email,temp.get(0).FullName,temp.get(0).Password,temp.get(0).University,temp.get(0).Major,
+                temp.get(0).Group1,temp.get(0).Group2,temp.get(0).Group3,SpendablePoints,TotalPoints);
+
         String ethan= db.getAllStudent().toString();
         Log.d("Ethan2", ethan);
+
 
         new AlertDialog.Builder(context)
                 .setTitle("Study Session Complete")
@@ -112,10 +117,14 @@ if (first ==1 ){
                     time_seconds=time_remaining/1000;
                     timer.setText(""+time_seconds);
                     StudySessionComplete();
+                    toasty();
                 }
 
             }
         };
         time_handler.post(runnable);
+    }
+    public void toasty(){
+        Toast.makeText(context, add_points+" added to your account", Toast.LENGTH_SHORT).show();
     }
 }
