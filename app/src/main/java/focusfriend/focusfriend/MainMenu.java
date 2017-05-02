@@ -205,6 +205,10 @@ public class MainMenu extends AppCompatActivity {
         Intent intent = new Intent(this,Rewards.class);
         startActivity(intent);
     }
+    public void goto_Settings(View view){
+        Intent intent = new Intent(this,Settings.class);
+        startActivity(intent);
+    }
     //Put hardcoded data into the db.
     public void db_insert(){
         DBHandler db=new DBHandler(context);

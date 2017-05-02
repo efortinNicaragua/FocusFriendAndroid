@@ -81,6 +81,7 @@
 
     <Button
         android:id="@+id/settings"
+        android:onClick="goto_Settings"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:text="Settings"

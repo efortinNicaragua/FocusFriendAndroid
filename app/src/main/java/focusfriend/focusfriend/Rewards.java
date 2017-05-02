@@ -159,8 +159,8 @@ public class Rewards extends AppCompatActivity {
                                 ArrayList<Class_Student> temp=db.getStudent(settings.getString("my_username","default"));
 
                                 if(temp.get(0).SpendablePoints-selectedListItem.Cost>=0) {
-                                    int SpendablePoints = temp.get(0).SpendablePoints - selectedListItem.Cost;
-                                    int TotalPoints = temp.get(0).TotalPoints - selectedListItem.Cost;
+                                    final int SpendablePoints = temp.get(0).SpendablePoints - selectedListItem.Cost;
+                                    int TotalPoints = temp.get(0).TotalPoints;
 
                                     db.updateStudent(temp.get(0).UserID, temp.get(0).Email, temp.get(0).FullName, temp.get(0).Password, temp.get(0).University, temp.get(0).Major,
                                             temp.get(0).Group1, temp.get(0).Group2, temp.get(0).Group3, SpendablePoints, TotalPoints);
@@ -169,7 +169,7 @@ public class Rewards extends AppCompatActivity {
                                             .setMessage("Use this code in store: \n"+selectedListItem.Code)
                                             .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                                                 public void onClick(DialogInterface dialog, int which) {
-                                                    Toast.makeText(Rewards.this, "Purchased!!!!!", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(Rewards.this, "Purchased, you have "+SpendablePoints+"left", Toast.LENGTH_SHORT).show();
                                                     dialog.cancel();
 
                                                 }

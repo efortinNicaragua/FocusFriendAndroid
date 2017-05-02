@@ -6,9 +6,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.method.DateTimeKeyListener;
 
 import java.security.acl.Group;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,6 +51,16 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String KEY_TYPE="type";
     private static final String KEY_REDEMPTION_CODE="code";
 
+    //Table name
+    private static final String TABLE_CLASSSCHEDULE="schedule";
+
+    //Schedule Table Columns Name
+    //private static final String KEY_USERID="userid";  ALREADY DECLARED
+    private static final String KEY_CLASSID="classid";
+    private static final String KEY_STARTTIME="starttime";
+    private static final String KEY_ENDTIME="endtime";
+    private static final String KEY_DAYSOFWEEK="dow";
+
     //Pictures will in corperated later in development
     // private static final String KEY_PICTURE="picture";
     public DBHandler(Context context) {
@@ -70,6 +82,10 @@ public class DBHandler extends SQLiteOpenHelper {
         String Create_Rewards_Table="CREATE TABLE " + TABLE_REWARDS +
                 "(" + KEY_REWARDID + " TEXT, " + KEY_DESCRIPTION+ " BLOB, " + KEY_COST + " INT, " +KEY_TYPE+" TEXT,"+KEY_REDEMPTION_CODE + " TEXT " + ")";
         db.execSQL(Create_Rewards_Table);
+
+        String Create_Schedule_Table="CREATE TABLE "+ TABLE_CLASSSCHEDULE+
+                "("+KEY_USERID+" TEXT, "+ KEY_CLASSID+ " TEXT, "+KEY_STARTTIME+ " TEXT, "+ KEY_ENDTIME+ " TEXT,"+ KEY_DAYSOFWEEK+ " TEXT)";
+        db.execSQL(Create_Schedule_Table);
     }
 
     //used to upgrade table on local device if we need to remake the table
@@ -77,6 +93,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
         db.execSQL("DROP TABLE IF EXISTS" +TABLE_REWARDS);
+        db.execSQL("DROP TABLE IF EXISTS"+TABLE_CLASSSCHEDULE);
         onCreate(db);
     }
 
@@ -241,20 +258,6 @@ public class DBHandler extends SQLiteOpenHelper {
     public void addReward(String RewardID, String Description, int Cost, String Type, String Code) {
         String addQuery="INSERT into "+ TABLE_REWARDS + " ( "+KEY_REWARDID+ ", "+ KEY_DESCRIPTION+", "+ KEY_COST+ ", "+KEY_TYPE+", "+KEY_REDEMPTION_CODE+") "
                 +" VALUES( '"+RewardID+"',  '"+Description+"', '"+Cost+"', '"+Type+"', '"+Code+"');";
-
-        /*
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        //Fill contentValues with column name and matching data
-        values.put(KEY_USERID, RewardID.toString());
-        values.put(KEY_DESCRIPTION, Description.toString());
-        values.put(KEY_COST, Cost);
-        values.put(KEY_TYPE,Type.toString());
-        values.put(KEY_REDEMPTION_CODE, Code.toString());
-
-        //insert values into db and close db
-        db.insert(TABLE_REWARDS, null, values);
-        db.close();*/
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(addQuery);
     }
@@ -277,6 +280,12 @@ public class DBHandler extends SQLiteOpenHelper {
             while (cursor.moveToNext());
         }
         return RewardList;
+    }
+    public void addClass(String UserID, String ClassID, String StartTime, String EndTime, String DoW) {
+        String addClass="INSERT into "+ TABLE_CLASSSCHEDULE + " ( "+KEY_USERID+ ", "+ KEY_CLASSID+", "+ KEY_STARTTIME+ ", "+KEY_ENDTIME+", "
+                +KEY_DAYSOFWEEK+") "+ " VALUES( '"+UserID+"',  '"+ClassID+"', '"+StartTime+"', '"+EndTime+"', '"+DoW+"')";
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(addClass);
     }
 
 }
