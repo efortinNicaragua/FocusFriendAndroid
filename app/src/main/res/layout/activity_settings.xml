@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_doctor_home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/start_hour"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/start_day"
+        android:layout_below="@+id/start_day"
+        android:ems="10"
+        android:hint="Hour HH"
+        android:inputType="time|date" />
+
+    <EditText
+        android:id="@+id/start_day"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/start_month"
+        android:layout_below="@+id/start_month"
+        android:ems="10"
+        android:hint="Day DD"
+        android:inputType="time|date" />
+
+    <EditText
+        android:id="@+id/start_month"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/start_year"
+        android:layout_below="@+id/start_year"
+        android:ems="10"
+        android:hint="Month MM"
+        android:inputType="time|date" />
+
+    <EditText
+        android:id="@+id/start_minute"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/start_hour"
+        android:layout_below="@+id/start_hour"
+        android:ems="10"
+        android:hint="Minute MM"
+        android:inputType="time|date" />
+
+    <EditText
+        android:id="@+id/end_day"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/end_month"
+        android:ems="10"
+        android:hint="Day DD"
+        android:inputType="time|date" />
+
+    <EditText
+        android:id="@+id/end_month"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/end_year"
+        android:ems="10"
+        android:hint="Month MM"
+        android:inputType="time|date" />
+
+    <EditText
+        android:id="@+id/start_year"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/setting_instructions"
+        android:layout_below="@+id/settings_startTime"
+        android:ems="10"
+        android:hint="Year YYYY"
+        android:inputType="time|date" />
+
+    <TextView
+        android:id="@+id/settings_Title"
+        android:layout_width="276dp"
+        android:layout_height="65dp"
+        android:text="Settings"
+        android:textAlignment="center"
+        android:textColor="#0000FF"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/setting_instructions"
+        android:layout_width="358dp"
+        android:layout_height="wrap_content"
+        android:text="Please enter your class hour and days of the week."
+        android:textAlignment="center"
+        android:textColor="#696969"
+        android:textSize="20sp"
+        android:onClick="start_timer"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="106dp"
+        android:layout_marginTop="38dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/settings_startTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Time "
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/setting_instructions"
+        android:layout_alignStart="@+id/settings_Title" />
+
+
+    <TextView
+        android:id="@+id/text_classid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Class ID"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/start_minute"
+        android:layout_alignStart="@+id/commit_settings" />
+
+    <TextView
+        android:id="@+id/text_weekdays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/settings_Title"
+        android:layout_below="@+id/end_Minute"
+        android:text="Weekdays"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/settings_EndTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="End Time "
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginEnd="14dp"
+        android:layout_alignBaseline="@+id/settings_startTime"
+        android:layout_alignBottom="@+id/settings_startTime"
+        android:layout_alignEnd="@+id/settings_Title" />
+
+    <EditText
+        android:id="@+id/end_Minute"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/end_hour"
+        android:layout_below="@+id/end_hour"
+        android:ems="10"
+        android:hint="Minute MM"
+        android:inputType="time|date" />
+
+    <EditText
+        android:id="@+id/edit_classid"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/start_minute"
+        android:layout_below="@+id/text_classid"
+        android:ems="10"
+        android:hint="ClassID"
+        android:inputType="time|date" />
+
+    <EditText
+        android:id="@+id/end_hour"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/end_day"
+        android:layout_below="@+id/end_day"
+        android:ems="10"
+        android:hint="Hour HH"
+        android:inputType="time|date" />
+
+    <EditText
+        android:id="@+id/end_year"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/settings_EndTime"
+        android:ems="10"
+        android:hint="Year YYYY"
+        android:inputType="time|date" />
+
+    <EditText
+        android:id="@+id/edit_daysoftheweek"
+        android:layout_width="175dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Days of the week "
+        android:layout_below="@+id/text_weekdays"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/commit_settings"
+        android:onClick="start_timer"
+        android:layout_width="299dp"
+        android:layout_height="66dp"
+        android:text="Start"
+        android:textSize="40sp"
+        android:background="@drawable/circle_button"
+        android:textColor="#F8F8FF"
+        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteY="391dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/settings_startTime" />
+
+</RelativeLayout>

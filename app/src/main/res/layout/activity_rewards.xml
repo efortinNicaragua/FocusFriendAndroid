@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:paddingBottom="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp">
+    <TextView
+        android:id="@+id/rewards_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rewards!"
+        android:textAlignment="center"
+        android:textColor="#0000FF"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true" />
+
+    <Button
+        android:id="@+id/show_food"
+        android:onClick="show_food"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Food"
+        android:textSize="13sp"
+        android:background="@drawable/circle_button"
+        android:textColor="#F8F8FF"
+        android:layout_marginTop="38dp"
+        android:layout_alignParentStart="true" />
+    <Button
+        android:id="@+id/show_clothes"
+        android:onClick="show_clothes"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Clothes"
+        android:textSize="15sp"
+        android:background="@drawable/circle_button"
+        android:textColor="#F8F8FF"
+        android:layout_alignTop="@+id/show_care"
+        android:layout_centerHorizontal="true" />
+    <Button
+        android:id="@+id/show_care"
+        android:onClick="show_care"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:text="Health &amp; Care"
+        android:textSize="15sp"
+        android:background="@drawable/circle_button"
+        android:textColor="#F8F8FF"
+        android:layout_alignTop="@+id/show_food"
+        android:layout_alignParentEnd="true" />
+
+    <ListView
+        android:id="@+id/rewards"
+        android:layout_width="fill_parent"
+        android:layout_height="400dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+</RelativeLayout>

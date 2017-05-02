@@ -18,6 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainMenu extends AppCompatActivity {
+    //basic intializations
     final String PREFS_NAME = "MyPrefsFile";
     SharedPreferences settings;
     Context context=this;
@@ -31,18 +32,19 @@ public class MainMenu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
 
-
+        //set setting=to shared preferences
         settings = getSharedPreferences(PREFS_NAME, 0);
-        if (check_credentials()==false) {
-            //the app is being launched for first time, do something
-            Log.d("Comments", "First time");
 
-            // first time task
+        //if false we don't know who the user is
+        if (check_credentials()==false) {
+
+            //Dialog pops us and allows user to create new user or log in
                     dialog_newuser= new Dialog(this);
                     dialog_newuser.setTitle("Enter Personal Info");
                     dialog_newuser.setContentView(R.layout.dialog_newuser);
                     dialog_newuser.show();
 
+            //set views
             existinguser=(Button) dialog_newuser.findViewById(R.id.existing_user);
             newuser=(Button) dialog_newuser.findViewById(R.id.create_newuser);
             et_name=(EditText) dialog_newuser.findViewById(R.id.edit_fullName);
@@ -50,7 +52,7 @@ public class MainMenu extends AppCompatActivity {
             et_username=(EditText) dialog_newuser.findViewById(R.id.edit_username);
             et_password=(EditText) dialog_newuser.findViewById(R.id.edit_password);
 
-
+            //new user on click gets info entered and pushes it to the db
             newuser.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
@@ -60,25 +62,35 @@ public class MainMenu extends AppCompatActivity {
                     username=et_username.getText().toString();
                     password=et_password.getText().toString();
 
-
+                    //db insert puts the hardcoded people into the db
                     db_insert();
+
+                    //we put new user in db and save their username and password to our preferences, this will allow for autologin later
                     DBHandler db=new DBHandler(context);
                     db.addStudent(username, email, name, password, "Villanova", "", "", "", "", 0, 0);
                     dialog_newuser.cancel();
                     Toast.makeText(context, "New User Created!", Toast.LENGTH_SHORT).show();
-                    // record the fact that the app has been started at least once
+
+
                     settings.edit().putString("my_username", username).commit();
                     settings.edit().putString("my_password",password).commit();
+
+                    //updates text view with total points
                     updatePoints();
                 }
             });
+
+            //this button is found on the login dialog and allows the user to login to existing account
            existinguser.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
+
+                   //puts hardcoded people into db
                     db_insert();
-                    dialog_newuser.cancel();
                     Log.d("Insert: ", "Inserting...");
 
+                    //Closes old dialog and pops up log in with existing user dialog
+                    dialog_newuser.cancel();
                     dialog_existinguser= new Dialog(context);
                     dialog_existinguser.setTitle("Enter Personal Info");
                     dialog_existinguser.setContentView(R.layout.dialog_existinguser);
@@ -88,6 +100,7 @@ public class MainMenu extends AppCompatActivity {
                     exuser_username=(EditText) dialog_existinguser.findViewById(R.id.edit1_username);
                     exuser_password=(EditText)dialog_existinguser.findViewById(R.id.edit1_password);
 
+                    //when login button is clicked check credentials to see if they are real
                     login.setOnClickListener(new View.OnClickListener(){
                         @Override
                         public void onClick(View view) {
@@ -100,8 +113,11 @@ public class MainMenu extends AppCompatActivity {
                             Log.d("Ethan Password:",User_Password);
                             Log.d("Ethan Passwords:",passwords.get(0).toString());
 
+
+                            //if we returned a password then we check to see if they mathch
                             if(passwords.size()>0) {
 
+                                //if they match save to preferences so we can get them later
                                 if (passwords.get(0).toString().equals(User_Password)) {
                                     settings.edit().putString("my_username", Username).commit();
                                     settings.edit().putString("my_password", User_Password).commit();
@@ -132,6 +148,7 @@ public class MainMenu extends AppCompatActivity {
         }
 
     }
+    //checks stored preferences credentials
     public boolean check_credentials(){
         Log.d("Ethan","Got here ");
         String Username=settings.getString("my_username","default");
@@ -161,11 +178,11 @@ public class MainMenu extends AppCompatActivity {
         }
 
     }
-
-    public void refresh(View view){
+   //On click of text view on main page update total points
+    public void refresh(View v){
         updatePoints();
     }
-
+    //update text view with total points
     public void updatePoints(){
         TextView points=(TextView) findViewById(R.id.totalPoints);
         DBHandler db=new DBHandler(context);
@@ -174,6 +191,7 @@ public class MainMenu extends AppCompatActivity {
         points.setText(""+TotalPoints);
     }
 
+    //methods to go to new activities
     public void goto_StudySession(View view){
         Intent intent = new Intent(this, StudySession.class);
         startActivity(intent);
@@ -183,14 +201,32 @@ public class MainMenu extends AppCompatActivity {
         Intent intent = new Intent(this,Leaderboard.class);
         startActivity(intent);
     }
+    public void goto_Rewards(View view){
+        Intent intent = new Intent(this,Rewards.class);
+        startActivity(intent);
+    }
+    public void goto_Settings(View view){
+        Intent intent = new Intent(this,Settings.class);
+        startActivity(intent);
+    }
+    //Put hardcoded data into the db.
     public void db_insert(){
         DBHandler db=new DBHandler(context);
 
+        //add students to db
         db.addStudent("efortin", "efortin@villanova.edu", "Ethan Fortin", "password", "Villanova", "CPE", "FocusFriend", "MADClass", "FrisbeeTeam", 100, 200);
         db.addStudent("mlopez15", "mlopez15@villanova.edu", "Madeline Lopez", "password", "Villanova", "EE", "FocusFriend", "MADClass", "SAE I'ts a Frat", 0, 1000);
         db.addStudent("mcustode", "mcustode@villanova.edu", "Michelle Custode", "password", "Villanova", "Finance","FocusFriend", "MADClass", "SAE I'ts a Frat", 1000, 2000);
         db.addStudent("jdardis", "jdardis@villanova.edu", "Jack Dardis", "password", "Villanova", "CSC", "FocusFriend", "MADClass", "SAE I'ts a Frat", 175, 175);
         db.addStudent("mdjay", "mdjay@villanova.edu", "Maria Djay", "password", "Villanova", "MTH", "FocusFriend", "MADClass", "SAE I'ts a Frat", 600, 2400);
-    }
 
+        //add rewards to db
+        db.addReward("campco1","BOGO %50 off Campco Zilli Fries ",4000,"food","zilliwilli");
+        db.addReward("chipotle1","%10 off Chipotle Burrito",1000,"food","chipotle1");
+        db.addReward("chipotle2","free guac with a Chiptole Burrito",1500,"food","chipotle2");
+        db.addReward("forever21","%15 off purchase of $30 or more",2000,"clothes","15off21");
+        db.addReward("alexandannie","free shipping on next order",4000,"clothes","alexshipsfree");
+        db.addReward("nails","BOGO free things girls do with nails",6000,"care","freenails");
+
+    }
 }
