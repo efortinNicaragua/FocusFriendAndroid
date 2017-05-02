@@ -112,7 +112,7 @@ public class StudySession extends AppCompatActivity {
 
         String ethan= db.getAllStudent().toString();
         Log.d("Ethan2", ethan);
-//changed
+//changed 2
 
         new AlertDialog.Builder(context)
                 .setTitle("Study Session Complete")
