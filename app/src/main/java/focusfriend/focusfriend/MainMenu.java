@@ -165,7 +165,11 @@ public class MainMenu extends AppCompatActivity {
 
             if (passwords.get(0).toString().equals(User_Password)) {
                 Log.d("Ethan Passwords:", "Successss AutoLOGIN");
-                Toast.makeText(context, "Auto Login Succes", Toast.LENGTH_LONG).show();
+
+                boolean settings_return=false;
+                if(getIntent().hasExtra("studysession")==true){
+                 settings_return=getIntent().getExtras().getBoolean("studysession");}
+                if(settings_return==false){Toast.makeText(context, "Auto Login Succes", Toast.LENGTH_LONG).show();}
                 updatePoints();
                 return true;
             } else {

@@ -24,11 +24,12 @@ public class StudySession extends AppCompatActivity {
     private Handler time_handler;
     private long time_remaining;
     private long time_seconds;
-    int add_points =100;
+    int add_points =200;
     Button timer_start;
     boolean pressed;
     Context context=this;
     DBHandler db=new DBHandler(this);
+    boolean cont;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,9 +42,9 @@ public class StudySession extends AppCompatActivity {
                 start_timer();
             }
         });
-
         timer = (TextView) findViewById(R.id.study_timeremaining);
         System.out.println("entered onCreate");
+        cont = true;
     }
 
 
@@ -56,36 +57,47 @@ public class StudySession extends AppCompatActivity {
             public void run() {
               Log.d("Ethan8", "Run was called");
               System.out.println("entered runnable");
-               boolean cont = true;
-
                  if (time_remaining > 0 && cont == true) {
+                     Log.d("Ethan cont",cont+"") ;
                      time_seconds = time_remaining / 1000;
                      timer.setText("" + time_seconds);
                      time_remaining = time_remaining - 1000;
                      time_handler.postDelayed(this, 1000);
-                     System.out.println("entered if loop");
-                     if (pressed = true) {
-                         add_points = 0;
+
+                     if (pressed == true) {
+
+                         Toast toastTouch = new Toast(context);
+                         toastTouch.makeText(context, "Shame on you for not finishing your session, you have earned no poitns and the timer reset", toastTouch.LENGTH_SHORT).show();
+                         /*add_points = 0;
                          SharedPreferences settings = getSharedPreferences("MyPrefsFile", 0);
                          DBHandler db = new DBHandler(context);
 
                          ArrayList<Class_Student> temp = db.getStudent(settings.getString("my_username", "default"));
+
+                         Log.d("Ethan SP",temp.get(0).SpendablePoints+"");
+                         Log.d("Ethan TP",temp.get(0).TotalPoints+"");
+
                          int SpendablePoints = temp.get(0).SpendablePoints + add_points;
                          int TotalPoints = temp.get(0).TotalPoints + add_points;
+
+                         Log.d("Ethan SPnew",SpendablePoints+add_points+"");
+                         Log.d("Ethan TPNew",TotalPoints+"");
+
                          db.updateStudent(temp.get(0).UserID, temp.get(0).Email, temp.get(0).FullName, temp.get(0).Password, temp.get(0).University, temp.get(0).Major,
                                  temp.get(0).Group1, temp.get(0).Group2, temp.get(0).Group3, SpendablePoints, TotalPoints);
 
                          String ethan= db.getAllStudent().toString();
-                         Log.d("Ethan2", ethan);
+                         //Log.d("Ethan2", ethan);
 
-                         System.out.println(TotalPoints);
+                         System.out.println(TotalPoints);*/
+                         Log.d("Ethan","back button pressed, or overview or home");
 
                          cont = false;
 
                      }
 
-                 }else if (time_remaining == 0) {
-                         time_seconds = time_remaining / 1000;
+                 }else if (time_remaining == 0 && cont==true) {
+                        time_seconds = time_remaining / 1000;
                          timer.setText("" + time_seconds);
                          StudySessionComplete();
                      }
@@ -104,8 +116,15 @@ public class StudySession extends AppCompatActivity {
             DBHandler db=new DBHandler(context);
 
             ArrayList<Class_Student> temp=db.getStudent(settings.getString("my_username","default"));
-            int SpendablePoints=temp.get(0).SpendablePoints+add_points;
-            int TotalPoints=temp.get(0).TotalPoints+add_points;
+
+        Log.d("Ethan SP",temp.get(0).SpendablePoints+"");
+        Log.d("Ethan TP",temp.get(0).TotalPoints+"");
+
+        int SpendablePoints = temp.get(0).SpendablePoints + add_points;
+        int TotalPoints = temp.get(0).TotalPoints + add_points;
+
+        Log.d("Ethan SPnew",SpendablePoints+add_points+"");
+        Log.d("Ethan TPNew",TotalPoints+add_points+"");
 
         db.updateStudent(temp.get(0).UserID,temp.get(0).Email,temp.get(0).FullName,temp.get(0).Password,temp.get(0).University,temp.get(0).Major,
                 temp.get(0).Group1,temp.get(0).Group2,temp.get(0).Group3,SpendablePoints,TotalPoints);
@@ -126,6 +145,7 @@ public class StudySession extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                         Intent intent = new Intent(context, MainMenu.class);
+                        intent.putExtra("studysession",true);
                         startActivity(intent);
                     }
                 })
@@ -169,14 +189,35 @@ public class StudySession extends AppCompatActivity {
    @Override
     public void onBackPressed() {
 
-        Toast toastTouch = new Toast(this);
-        toastTouch.makeText(context, "Sorry you ended your session early. Your points have not been earned", toastTouch.LENGTH_SHORT).show();
-        if(toastTouch != null){
+        //Toast toastTouch = new Toast(this);
+        //toastTouch.makeText(context, "Sorry you ended your session early. Your points have not been earned", toastTouch.LENGTH_SHORT).show();
+       // if(toastTouch != null){
             pressed = true;
-        }
+       // }
 
        Intent intent = new Intent(context, MainMenu.class);
+       intent.putExtra("studysession",true);
        startActivity(intent);
 
     }
-}
+    @Override
+    public void onPause(){
+        super.onPause();
+
+        //if(toastTouch != null){
+            pressed = true;
+       // }
+
+    }
+   /* @Override
+    public void onResume(){
+        timer.setText("" + time_seconds);
+    }*/
+
+    @Override
+    public void onStop(){
+       super.onStop();
+        finish();
+        }
+
+    }
