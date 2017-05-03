@@ -17,6 +17,30 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp" />
+    <TextView
+        android:id="@+id/time_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time left in class"
+        android:textAlignment="center"
+        android:textColor="#0000FF"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_above="@+id/class_timeremaining"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/class_timeremaining"
+        android:layout_width="366dp"
+        android:layout_height="60dp"
+        android:text="Time Left"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="40sp"
+        tools:layout_editor_absoluteX="9dp"
+        tools:layout_editor_absoluteY="299dp"
+        android:layout_above="@+id/studySession"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="13dp" />
 
     <TextView
         android:id="@+id/totalPoints"
@@ -31,9 +55,8 @@
         android:textStyle="bold"
         tools:layout_editor_absoluteX="122dp"
         tools:layout_editor_absoluteY="62dp"
-        android:layout_marginTop="22dp"
         android:layout_below="@+id/MM_TotalPoints"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignEnd="@+id/time_left" />
 
     <Button
         android:id="@+id/studySession"

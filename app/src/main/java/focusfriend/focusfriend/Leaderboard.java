@@ -131,4 +131,13 @@ public class Leaderboard extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.leaderboard);
         listView.setAdapter(adapter);
     }
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(context, MainMenu.class);
+        intent.putExtra("studysession",true);
+        startActivity(intent);
+
+    }
 }
+
