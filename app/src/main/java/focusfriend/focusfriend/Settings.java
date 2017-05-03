@@ -65,7 +65,6 @@ public class Settings extends AppCompatActivity {
         e_hour=end_hour.getText().toString();
         e_minute=end_minute.getText().toString();
 
-
         EditText t_classid=(EditText)findViewById(R.id.edit_classid);
         EditText t_weekdays=(EditText)findViewById(R.id.edit_daysoftheweek);
 

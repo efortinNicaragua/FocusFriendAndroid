@@ -193,10 +193,8 @@ public class Rewards extends AppCompatActivity {
     }
     @Override
     public void onBackPressed() {
-
         Intent intent = new Intent(context, MainMenu.class);
         intent.putExtra("studysession",true);
         startActivity(intent);
-
     }
 }

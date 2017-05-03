@@ -24,11 +24,12 @@
         android:text="Time left in class"
         android:textAlignment="center"
         android:textColor="#0000FF"
-        android:textSize="20sp"
+        android:textSize="21sp"
         android:textStyle="bold"
         android:layout_above="@+id/class_timeremaining"
         android:layout_centerHorizontal="true" />
-    <TextView
+
+        <TextView
         android:id="@+id/class_timeremaining"
         android:layout_width="366dp"
         android:layout_height="60dp"

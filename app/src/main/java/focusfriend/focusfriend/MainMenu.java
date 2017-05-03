@@ -476,16 +476,11 @@ public class MainMenu extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 
-        //Toast toastTouch = new Toast(this);
-        //toastTouch.makeText(context, "Sorry you ended your session early. Your points have not been earned", toastTouch.LENGTH_SHORT).show();
-        // if(toastTouch != null){
         pressed = true;
         // }
-
         Intent intent = new Intent(context, MainMenu.class);
         intent.putExtra("studysession",true);
         startActivity(intent);
-
     }
     @Override
     public void onPause(){
