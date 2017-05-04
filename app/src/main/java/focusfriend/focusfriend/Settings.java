@@ -1,6 +1,7 @@
 package focusfriend.focusfriend;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.icu.text.DateFormat;
 import android.icu.text.SimpleDateFormat;
@@ -30,6 +31,16 @@ public class Settings extends AppCompatActivity {
 
         setContentView(R.layout.activity_settings);
 
+
+    }
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void start_timer(View v)  {
+        DBHandler db=new DBHandler(context);
+
+        settings = getSharedPreferences(PREFS_NAME, 0);
+        userid=settings.getString("my_username","default");
+
+
         EditText start_year=(EditText)findViewById(R.id.start_year);
         EditText start_month=(EditText)findViewById(R.id.start_month);
         EditText start_day=(EditText)findViewById(R.id.start_day);
@@ -54,26 +65,21 @@ public class Settings extends AppCompatActivity {
         e_hour=end_hour.getText().toString();
         e_minute=end_minute.getText().toString();
 
-
         EditText t_classid=(EditText)findViewById(R.id.edit_classid);
         EditText t_weekdays=(EditText)findViewById(R.id.edit_daysoftheweek);
 
         classid=t_classid.getText().toString();
         weekdays=t_weekdays.getText().toString();
 
-
-    }
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void start_timer(View v)  {
-        DBHandler db=new DBHandler(context);
-
-        settings = getSharedPreferences(PREFS_NAME, 0);
-        userid=settings.getString("my_username","default");
-
         String dtStart=st_year+"-"+st_month+"-"+st_day+"T"+st_hour+":"+st_minute+"";
+        Log.d("Ethan dt start",dtStart);
         String dtEnd=e_year+"-"+e_month+"-"+e_day+"T"+e_hour+":"+e_minute;
+        Log.d("Ethan et start",dtEnd);
 
         db.addClass(userid,classid,dtStart,dtEnd,weekdays);
         Toast.makeText(context, "Succesfully updated", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this,MainMenu.class);
+        intent.putExtra("studysession",true);
+        startActivity(intent);
     }
 }

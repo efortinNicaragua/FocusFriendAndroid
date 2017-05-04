@@ -65,7 +65,6 @@ public class StudySession extends AppCompatActivity {
                      time_handler.postDelayed(this, 1000);
 
                      if (pressed == true) {
-
                          Toast toastTouch = new Toast(context);
                          toastTouch.makeText(context, "Shame on you for not finishing your session, you have earned no poitns and the timer reset", toastTouch.LENGTH_SHORT).show();
                          /*add_points = 0;

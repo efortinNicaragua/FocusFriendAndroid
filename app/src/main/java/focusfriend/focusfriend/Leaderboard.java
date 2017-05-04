@@ -35,6 +35,7 @@ public class Leaderboard extends AppCompatActivity {
         settings = getSharedPreferences(PREFS_NAME, 0);
         username = settings.getString("my_username", "default");
 
+
         //dialog allows user to update their groups university and major for comparisons on the leaderboard only launched on click
         dialog_update_groups = new Dialog(context);
         dialog_update_groups.setContentView(R.layout.dialog_updategroups);
@@ -131,4 +132,13 @@ public class Leaderboard extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.leaderboard);
         listView.setAdapter(adapter);
     }
+    @Override
+    public void onBackPressed() {
+
+        Intent intent = new Intent(context, MainMenu.class);
+        intent.putExtra("studysession",true);
+        startActivity(intent);
+
+    }
 }
+

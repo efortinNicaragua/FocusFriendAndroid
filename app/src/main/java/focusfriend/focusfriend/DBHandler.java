@@ -32,34 +32,34 @@ public class DBHandler extends SQLiteOpenHelper {
     private static final String KEY_USERID = "userid";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_FULL_NAME = "full_name";
-    private static final String KEY_PASSWORD="password";
-    private static final String KEY_UNIVERSITY="university";
-    private static final String KEY_MAJOR="major";
-    private static final String KEY_GROUP1="group1";
-    private static final String KEY_GROUP2="group2";
-    private static final String KEY_GROUP3="group3";
-    private static final String KEY_SPENDABLE_POINTS="sp";
-    private static final String KEY_TOTAL_POINTS="tp";
+    private static final String KEY_PASSWORD = "password";
+    private static final String KEY_UNIVERSITY = "university";
+    private static final String KEY_MAJOR = "major";
+    private static final String KEY_GROUP1 = "group1";
+    private static final String KEY_GROUP2 = "group2";
+    private static final String KEY_GROUP3 = "group3";
+    private static final String KEY_SPENDABLE_POINTS = "sp";
+    private static final String KEY_TOTAL_POINTS = "tp";
 
     //Table name
-    private static final String TABLE_REWARDS="rewards";
+    private static final String TABLE_REWARDS = "rewards";
 
     //Users Table Columns names
     private static final String KEY_REWARDID = "rewardid";
     private static final String KEY_DESCRIPTION = "description";
     private static final String KEY_COST = "cost";
-    private static final String KEY_TYPE="type";
-    private static final String KEY_REDEMPTION_CODE="code";
+    private static final String KEY_TYPE = "type";
+    private static final String KEY_REDEMPTION_CODE = "code";
 
     //Table name
-    private static final String TABLE_CLASSSCHEDULE="schedule";
+    private static final String TABLE_CLASSSCHEDULE = "schedule";
 
     //Schedule Table Columns Name
     //private static final String KEY_USERID="userid";  ALREADY DECLARED
-    private static final String KEY_CLASSID="classid";
-    private static final String KEY_STARTTIME="starttime";
-    private static final String KEY_ENDTIME="endtime";
-    private static final String KEY_DAYSOFWEEK="dow";
+    private static final String KEY_CLASSID = "classid";
+    private static final String KEY_STARTTIME = "starttime";
+    private static final String KEY_ENDTIME = "endtime";
+    private static final String KEY_DAYSOFWEEK = "dow";
 
     //Pictures will in corperated later in development
     // private static final String KEY_PICTURE="picture";
@@ -72,19 +72,19 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         //Write the string in SQL syntax to create the users tables, outlines columns and data types
         String Create_Students_Table = "CREATE TABLE " + TABLE_USERS +
-                "(" + KEY_USERID + " TEXT, " + KEY_EMAIL+ " TEXT, " + KEY_FULL_NAME + " TEXT, " +KEY_PASSWORD + " TEXT, "
-                + KEY_UNIVERSITY+ " TEXT, " + KEY_MAJOR + " TEXT, " + KEY_GROUP1 + " TEXT, " +KEY_GROUP2 + " TEXT, "
+                "(" + KEY_USERID + " TEXT, " + KEY_EMAIL + " TEXT, " + KEY_FULL_NAME + " TEXT, " + KEY_PASSWORD + " TEXT, "
+                + KEY_UNIVERSITY + " TEXT, " + KEY_MAJOR + " TEXT, " + KEY_GROUP1 + " TEXT, " + KEY_GROUP2 + " TEXT, "
                 + KEY_GROUP3 + " TEXT, " + KEY_SPENDABLE_POINTS + " BIGINT, " + KEY_TOTAL_POINTS + " BIGINT "
                 + ")";
         //execute sql statement to built users table
         db.execSQL(Create_Students_Table);
         //Write the string in SQL syntax to create the rewards table, outlines columns and datatypes
-        String Create_Rewards_Table="CREATE TABLE " + TABLE_REWARDS +
-                "(" + KEY_REWARDID + " TEXT, " + KEY_DESCRIPTION+ " BLOB, " + KEY_COST + " INT, " +KEY_TYPE+" TEXT,"+KEY_REDEMPTION_CODE + " TEXT " + ")";
+        String Create_Rewards_Table = "CREATE TABLE " + TABLE_REWARDS +
+                "(" + KEY_REWARDID + " TEXT, " + KEY_DESCRIPTION + " BLOB, " + KEY_COST + " INT, " + KEY_TYPE + " TEXT," + KEY_REDEMPTION_CODE + " TEXT " + ")";
         db.execSQL(Create_Rewards_Table);
 
-        String Create_Schedule_Table="CREATE TABLE "+ TABLE_CLASSSCHEDULE+
-                "("+KEY_USERID+" TEXT, "+ KEY_CLASSID+ " TEXT, "+KEY_STARTTIME+ " TEXT, "+ KEY_ENDTIME+ " TEXT,"+ KEY_DAYSOFWEEK+ " TEXT)";
+        String Create_Schedule_Table = "CREATE TABLE " + TABLE_CLASSSCHEDULE +
+                "(" + KEY_USERID + " TEXT, " + KEY_CLASSID + " TEXT, " + KEY_STARTTIME + " TEXT, " + KEY_ENDTIME + " TEXT," + KEY_DAYSOFWEEK + " TEXT)";
         db.execSQL(Create_Schedule_Table);
     }
 
@@ -92,8 +92,8 @@ public class DBHandler extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
-        db.execSQL("DROP TABLE IF EXISTS" +TABLE_REWARDS);
-        db.execSQL("DROP TABLE IF EXISTS"+TABLE_CLASSSCHEDULE);
+        db.execSQL("DROP TABLE IF EXISTS" + TABLE_REWARDS);
+        db.execSQL("DROP TABLE IF EXISTS" + TABLE_CLASSSCHEDULE);
         onCreate(db);
     }
 
@@ -126,7 +126,7 @@ public class DBHandler extends SQLiteOpenHelper {
         ArrayList<Class_Student> studentList = new ArrayList<Class_Student>();
 
         //String SQL query
-        String selectQuery = "SELECT *  FROM " + TABLE_USERS + " WHERE userid like '" +UserID+"'";
+        String selectQuery = "SELECT *  FROM " + TABLE_USERS + " WHERE userid like '" + UserID + "'";
 
         //set the cursor= to results of sql query
         SQLiteDatabase db = this.getWritableDatabase();
@@ -136,10 +136,10 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 int totalPoints, spendablePoints;
-                totalPoints=Integer.parseInt(cursor.getString(10));
-                spendablePoints=Integer.parseInt(cursor.getString(9));
-                Class_Student Student= new Class_Student(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
-                        cursor.getString(5), cursor.getString(6), cursor.getString(7),cursor.getString(8),
+                totalPoints = Integer.parseInt(cursor.getString(10));
+                spendablePoints = Integer.parseInt(cursor.getString(9));
+                Class_Student Student = new Class_Student(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                        cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8),
                         spendablePoints, totalPoints);
                 studentList.add(Student);
             }
@@ -161,10 +161,10 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 int totalPoints, spendablePoints;
-                totalPoints=Integer.parseInt(cursor.getString(10));
-                spendablePoints=Integer.parseInt(cursor.getString(9));
-                        Class_Student Student= new Class_Student(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
-                        cursor.getString(5), cursor.getString(6), cursor.getString(7),cursor.getString(8),
+                totalPoints = Integer.parseInt(cursor.getString(10));
+                spendablePoints = Integer.parseInt(cursor.getString(9));
+                Class_Student Student = new Class_Student(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                        cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8),
                         spendablePoints, totalPoints);
                 studentList.add(Student);
             }
@@ -177,7 +177,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public ArrayList<Class_Student> getAllStudentfromGroup(String sort, String value) {
         ArrayList<Class_Student> studentList = new ArrayList<Class_Student>();
 
-        String selectQuery = "SELECT * FROM " + TABLE_USERS + " WHERE "+ sort+ " like '"+value+"' ORDER BY tp DESC;";
+        String selectQuery = "SELECT * FROM " + TABLE_USERS + " WHERE " + sort + " like '" + value + "' ORDER BY tp DESC;";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -185,10 +185,10 @@ public class DBHandler extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 int totalPoints, spendablePoints;
-                totalPoints=Integer.parseInt(cursor.getString(10));
-                spendablePoints=Integer.parseInt(cursor.getString(9));
-                Class_Student Student= new Class_Student(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
-                        cursor.getString(5), cursor.getString(6), cursor.getString(7),cursor.getString(8),
+                totalPoints = Integer.parseInt(cursor.getString(10));
+                spendablePoints = Integer.parseInt(cursor.getString(9));
+                Class_Student Student = new Class_Student(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4),
+                        cursor.getString(5), cursor.getString(6), cursor.getString(7), cursor.getString(8),
                         spendablePoints, totalPoints);
                 studentList.add(Student);
             }
@@ -220,33 +220,34 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     //used to update a students groups
-    public void updateGroups(String userID, String university, String major, String group1, String group2, String group3){
-        String selectQuery = "Update " +TABLE_USERS+
-                            " Set "+ KEY_UNIVERSITY + " = '" + university+ "', "+ KEY_MAJOR+ " = '"+major+ "', "+ KEY_GROUP1+ "= '"+group1+"', "
-                            +KEY_GROUP2+ " = '"+group2+"', "+ KEY_GROUP3+ " = '"+ group3+"' "+
-                            "Where "+KEY_USERID+ " = '"+userID+"'";
+    public void updateGroups(String userID, String university, String major, String group1, String group2, String group3) {
+        String selectQuery = "Update " + TABLE_USERS +
+                " Set " + KEY_UNIVERSITY + " = '" + university + "', " + KEY_MAJOR + " = '" + major + "', " + KEY_GROUP1 + "= '" + group1 + "', "
+                + KEY_GROUP2 + " = '" + group2 + "', " + KEY_GROUP3 + " = '" + group3 + "' " +
+                "Where " + KEY_USERID + " = '" + userID + "'";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(selectQuery);
     }
 
     //used to delete contact
-    public void deleteContact(String UserID){
-        SQLiteDatabase db= this.getWritableDatabase();
-        db.delete(TABLE_USERS,KEY_USERID+ " = ?",
+    public void deleteContact(String UserID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_USERS, KEY_USERID + " = ?",
                 new String[]{UserID.toString()});
         db.close();
     }
+
     //returns password of userid , password is then matched to what the user enters, if same the screen lets the user continue
-    public ArrayList<String> login(String UserID){
+    public ArrayList<String> login(String UserID) {
         ArrayList<String> passwords = new ArrayList<String>();
-        String selectQuery = "SELECT password FROM " + TABLE_USERS + " WHERE userid like '" +UserID+"'";
+        String selectQuery = "SELECT password FROM " + TABLE_USERS + " WHERE userid like '" + UserID + "'";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
             do {
-                String password= cursor.getString(0);
+                String password = cursor.getString(0);
                 passwords.add(password);
             }
             while (cursor.moveToNext());
@@ -254,17 +255,19 @@ public class DBHandler extends SQLiteOpenHelper {
         return passwords;
 
     }
+
     //this is used to add a reward to the database
     public void addReward(String RewardID, String Description, int Cost, String Type, String Code) {
-        String addQuery="INSERT into "+ TABLE_REWARDS + " ( "+KEY_REWARDID+ ", "+ KEY_DESCRIPTION+", "+ KEY_COST+ ", "+KEY_TYPE+", "+KEY_REDEMPTION_CODE+") "
-                +" VALUES( '"+RewardID+"',  '"+Description+"', '"+Cost+"', '"+Type+"', '"+Code+"');";
+        String addQuery = "INSERT into " + TABLE_REWARDS + " ( " + KEY_REWARDID + ", " + KEY_DESCRIPTION + ", " + KEY_COST + ", " + KEY_TYPE + ", " + KEY_REDEMPTION_CODE + ") "
+                + " VALUES( '" + RewardID + "',  '" + Description + "', '" + Cost + "', '" + Type + "', '" + Code + "');";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(addQuery);
     }
+
     public ArrayList<Class_Rewards> getAllRewards(String sort, String value) {
         ArrayList<Class_Rewards> RewardList = new ArrayList<Class_Rewards>();
 
-        String selectQuery = "SELECT * FROM " + TABLE_REWARDS + " WHERE "+ sort+ " like '"+value+"' ORDER BY cost DESC;";
+        String selectQuery = "SELECT * FROM " + TABLE_REWARDS + " WHERE " + sort + " like '" + value + "' ORDER BY cost DESC;";
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -273,19 +276,38 @@ public class DBHandler extends SQLiteOpenHelper {
             do {
                 int cost;
 
-                cost=Integer.parseInt(cursor.getString(2));
-                Class_Rewards reward= new Class_Rewards(cursor.getString(0), cursor.getString(1), cost, cursor.getString(3), cursor.getString(4));
+                cost = Integer.parseInt(cursor.getString(2));
+                Class_Rewards reward = new Class_Rewards(cursor.getString(0), cursor.getString(1), cost, cursor.getString(3), cursor.getString(4));
                 RewardList.add(reward);
             }
             while (cursor.moveToNext());
         }
         return RewardList;
     }
+
     public void addClass(String UserID, String ClassID, String StartTime, String EndTime, String DoW) {
-        String addClass="INSERT into "+ TABLE_CLASSSCHEDULE + " ( "+KEY_USERID+ ", "+ KEY_CLASSID+", "+ KEY_STARTTIME+ ", "+KEY_ENDTIME+", "
-                +KEY_DAYSOFWEEK+") "+ " VALUES( '"+UserID+"',  '"+ClassID+"', '"+StartTime+"', '"+EndTime+"', '"+DoW+"')";
+        String addClass = "INSERT into " + TABLE_CLASSSCHEDULE + " ( " + KEY_USERID + ", " + KEY_CLASSID + ", " + KEY_STARTTIME + ", " + KEY_ENDTIME + ", "
+                + KEY_DAYSOFWEEK + ") " + " VALUES( '" + UserID + "',  '" + ClassID + "', '" + StartTime + "', '" + EndTime + "', '" + DoW + "')";
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL(addClass);
     }
 
+    public ArrayList<Class_Class> getClassForUser(String userid) {
+        ArrayList<Class_Class> classList = new ArrayList<>();
+
+        String selectQuery = "SELECT * FROM " + TABLE_CLASSSCHEDULE + " WHERE userid LIKE '" + userid + "'";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+
+                Class_Class Class = new Class_Class(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                classList.add(Class);
+            }
+            while (cursor.moveToNext());
+
+        }
+        return classList;
+    }
 }
