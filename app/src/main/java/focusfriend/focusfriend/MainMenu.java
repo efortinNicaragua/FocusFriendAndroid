@@ -457,6 +457,7 @@ public class MainMenu extends AppCompatActivity {
         //add students to db
         db.addStudent("efortin", "efortin@villanova.edu", "Ethan Fortin", "password", "Villanova", "CPE", "FocusFriend", "MADClass", "FrisbeeTeam", 100, 200);
         db.addStudent("mlopez15", "mlopez15@villanova.edu", "Madeline Lopez", "password", "Villanova", "EE", "FocusFriend", "MADClass", "SAE I'ts a Frat", 0, 1000);
+       //MITCH IS NOT A FINANCE MAJOR
         db.addStudent("mcustode", "mcustode@villanova.edu", "Michelle Custode", "password", "Villanova", "MIS","FocusFriend", "MADClass", "SAE I'ts a Frat", 1000, 2000);
         db.addStudent("jdardis", "jdardis@villanova.edu", "Jack Dardis", "password", "Villanova", "CSC", "FocusFriend", "MADClass", "SAE I'ts a Frat", 175, 175);
         db.addStudent("mdjay", "mdjay@villanova.edu", "Maria Djay", "password", "Villanova", "MTH", "FocusFriend", "MADClass", "SAE I'ts a Frat", 600, 2400);
